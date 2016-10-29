@@ -13,23 +13,36 @@ def main():
         try:
             var1 = int(input("Enter number or a letter to exit: "))
         except ValueError:
-                sys.exit()
-        operation = input("Enter an operation:")
+            sys.exit()
+        operation = input("Enter an operation: ")
         while(operation != '+' and operation != '-' and operation != '*' and operation != '/'):
                 print("You must enter a proper operation")
-                operation = input("Enter an operation:")
-        else:
-                var2 = int(input("Enter second number: "))
+                operation = input("Enter an operation: ")
+        try:
+            var2 = int(input("Enter second number: "))
 
 
-                if(operation == '+'):
-                    print(add(var1,var2))
-                elif(operation == '-'):
-                    print(sub(var1, var2))
-                elif(operation == '*'):
-                    print(mul(var1, var2))
-                else:
-                    print(div(var1, var2))
+            if(operation == '+'):
+                print(add(var1,var2))
+            elif(operation == '-'):
+                print(sub(var1, var2))
+            elif(operation == '*'):
+                print(mul(var1, var2))
+            else:
+                print(div(var1, var2))
+            pass
+        except ValueError:
+            var2 = int(input("Enter second number: "))
+            if(operation == '+'):
+                print(add(var1,var2))
+            elif(operation == '-'):
+                print(sub(var1, var2))
+            elif(operation == '*'):
+                print(mul(var1, var2))
+            else:
+                print(div(var1, var2))
+            pass
+
 
 
 main()
