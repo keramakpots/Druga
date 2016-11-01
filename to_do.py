@@ -3,24 +3,33 @@ import sys
 
 
 def doing():
+
     question = input("Please specify a command[list/add/mark/archive]:")
     if question == 'list':
         print ("You saved the followings to_do items: ")
         with open('lista.txt', 'r') as infile:
-            data = infile.read()
-            print(data)
+            data = infile.readlines()
+            for i, item in enumerate(data):
+                print(i+1, item)
     elif question == 'add':
         print ("Add an item:")
         answer1 = input()
         with open('lista.txt', 'a') as infile:
-            infile.write('\n' + answer1)
+            infile.write('[ ]'+ answer1 + '\n')
             print ("You've added", answer1, "to to-do list.")
     elif question == 'mark':
-        to_do = open('lista.txt', 'a')
-        print (to_do)
+        with open('lista.txt', 'r+') as infile:
+            data = infile.readlines()
+            mark = open('lista.txt', 'w')
         print ("Which item you want to mark as completed?:")
-    elif imput() == archive:
-        print("else")
+
+    elif question == 'archive':
+        with open('lista.txt', 'r+') as infile:
+            data = infile.readlines()
+            infile.seek(0)
+        print("All completed task has been delated")
     else:
         sys.exit()
+
+
 doing()
