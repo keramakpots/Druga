@@ -23,15 +23,14 @@ def doing():
                 print(i+1, item)
             numer = input("Which item you want to mark as completed:")
             try:
-                numer = int(numer)
+                numer = int(numer) - 1
             except ValueError:
                 print("Choose position from a list")
                 doing()
-            for index, value in enumerate(data):
-                if numer == index + 1:
-                    x = data[index].replace(" ", "X", 1)
-                    data[index] = x
-                    print(data[index][3:], "is completed.")
+            for i, line in enumerate(data, start=1):
+                if i == numer:
+                    data[numer]=data[numer].replace('[ ]','[x]')
+                    print(data[i],"is completed.")
                     pass
 
     elif question == 'archive':
