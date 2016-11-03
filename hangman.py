@@ -17,12 +17,14 @@ def main():
     lifes = 5
     option(guess, name, lifes)
 def option(guess, name, lifes):
+    print(lifes)
     choice = input("Do you want to guess a letter or whole word?:Enter letter or word: ")
     if choice == 'letter':
         letter(guess, name, lifes)
     else:
         word(guess, name, lifes)
 def word(guess, name, lifes):
+    print(lifes)
     trying = input("What's the capital?")
     if trying.upper() == guess:
         print("Congratulation", name,". You've guessed the capital.")
@@ -32,10 +34,15 @@ def word(guess, name, lifes):
         else:
             sys.exit()
 
-    else:
-        lifes =-1
-        print("Unfortunately", trying, "is not my secret capital")
-        option(guess)
+    elif trying.upper()!= guess:
+        lifes = lifes - 1
+        if lifes > 0:
+            print("Unfortunately", trying, "is not my secret capital")
+            option(guess, name, lifes)
+        else:
+            print("You loose.")
+            sys.exit()
+
 
 
 
