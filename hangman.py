@@ -29,14 +29,15 @@ def option(guess, name, lifes, start_time,city, info, lette_wrong):
         print(lette," ",end="")
     if info == city:
         print("Congratulation",name,". You've guessed the capital in", round((time.time() - start_time)), "seconds.")
-        over = input("\nDo you want to play again (yes for start over/no for exit) ")
+        over = input("Do you want to play again (yes for start over/no for exit) ")
         while over != 'yes' and over != 'no':
             over = input("Enter expected command(yes or no): ")
+        else:
             if over.lower() == 'yes':
                 main()
                 pass
             elif over.lower() == 'no':
-                sys.exit()
+                exit()
                 pass
     else:
         print("Wrong letters: ",lette_wrong)
@@ -74,6 +75,7 @@ def word(guess, name, lifes, start_time,city, info, lette_wrong):
         over = input("Do you want to play again(yes for start over/no for exit) ")
         while over != 'yes' and over != 'no':
             over = input("Enter expected command(yes or no): ")
+        else:
             if over.lower() == 'yes':
                 main()
                 pass
