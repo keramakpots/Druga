@@ -14,22 +14,22 @@ def main():
     guess = random.choice(capitals)
     print(guess)
     print("Try to guess a european capital")
-    option(guess)
     lifes = 5
-def option(guess):
+    option(guess, name, lifes)
+def option(guess, name, lifes):
     choice = input("Do you want to guess a letter or whole word?:Enter letter or word: ")
     if choice == 'letter':
-        letter(guess)
+        letter(guess, name, lifes)
     else:
-        word(guess)
-def word(guess):
+        word(guess, name, lifes)
+def word(guess, name, lifes):
     trying = input("What's the capital?")
-    if trying == guess:
-        print("Congratulation! You've guessed the capital.")
-        Over = input("Do you want to play again(yes for start over/no for exit)")
+    if trying.upper() == guess:
+        print("Congratulation", name,". You've guessed the capital.")
+        over = input("Do you want to play again(yes for start over/no for exit)")
         if over == 'yes' or over == 'Yes' or over == 'YES':
             main()
-        else
+        else:
             sys.exit()
 
     else:
