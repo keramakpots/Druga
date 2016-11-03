@@ -1,5 +1,6 @@
 import random
 import sys
+import time
 def main():
     name = input("Welcome in Hangman game. Whats your name?:")
     capitals = ("AMSTERDAM", "ANDORRA", "AMNKARA", "ATHENS", "BAKU", "BELFAST",
@@ -8,37 +9,79 @@ def main():
                 "KIEV", "LISBON", "LJUBLJANA", "LONDON", "LUXEMBOURG", "MADRID",
                 "MINSK", "MONACO", "MOSCOW", "NICOSIA","OSLO", "PARIS",
                 "PODGORICA","PRAGUE", "PRISTINA", "REYKJAVIK", "RIGA", "ROME",
-                "SAN MARINO", "SARAJEVO","SKOPJE", "SOFIA", "STOCKHOLM",
-                "TALLINN", "TBILISI", "TIRANA", "VIENNA", "VILNIUS","WARSAW",
-                "ZAGREB")
+                 "SARAJEVO","SKOPJE", "SOFIA", "STOCKHOLM",
+                "TALLINN", "TBILISI", "TIRANA", "VATICAN",
+                "VIENNA", "VILNIUS","WARSAW", "ZAGREB")
     guess = random.choice(capitals)
+    city = list(guess)
+    info = city[:]
+    for lette in info:
+        b = info.index(lette)
+        info[b] = "_"
     print(guess)
     print("Try to guess a european capital")
+    start_time = time.time()
     lifes = 5
-    option(guess, name, lifes)
-def option(guess, name, lifes):
+    lette_wrong = []
+    option(guess, name, lifes, start_time,city, info, lette_wrong)
+def option(guess, name, lifes, start_time,city, info, lette_wrong):
+    for lette in info:
+        print(lette," ",end="")
+    if info == city:
+        print("Congratulation",name,". You've guessed the capital in", round((time.time() - start_time)), "seconds.")
+        over = input("\nDo you want to play again (yes for start over/no for exit) ")
+        if over.lower() == 'yes':
+            main()
+        elif over.lower() == 'no':
+            sys.exit()
+        else:
+            over = input("Enter expected command(yes or no): ")
+    else:
+        print("Wrong letters: ",lette_wrong)
     print(lifes)
     choice = input("Do you want to guess a letter or whole word?:Enter letter or word: ")
     if choice == 'letter':
-        letter(guess, name, lifes)
+        letter(guess, name, lifes, start_time,city, info, lette_wrong)
+    elif choice == 'word':
+        word(guess, name, lifes, start_time,city, info, lette_wrong)
     else:
-        word(guess, name, lifes)
-def word(guess, name, lifes):
+        print("Wrong option")
+        option(guess, name, lifes, start_time,city, info, lette_wrong)
+def letter(guess, name, lifes, start_time,city, info, lette_wrong):
+
+    answer = input("Please choose a letter: ")
+
+    if answer.upper() in city:
+        for ind in range(len(city)):
+            if city[ind] == answer.upper():
+                info[ind] = answer.upper()
+
+        option(guess, name, lifes, start_time,city, info, lette_wrong)
+
+    else:
+        lifes = lifes - 1
+        lette_wrong.append(answer.upper())
+        option(guess, name, lifes, start_time,city, info, lette_wrong)
+
+
+def word(guess, name, lifes, start_time,city, info, lette_wrong):
     print(lifes)
     trying = input("What's the capital?")
     if trying.upper() == guess:
-        print("Congratulation", name,". You've guessed the capital.")
-        over = input("Do you want to play again(yes for start over/no for exit)")
-        if over == 'yes' or over == 'Yes' or over == 'YES':
+        print("Congratulation",name,". You've guessed the capital. You did it in ", round((time.time() - start_time)), "seconds.")
+        over = input("Do you want to play again(yes for start over/no for exit) ")
+        if over.lower() == 'yes':
             main()
-        else:
+        elif over.lower() == 'no':
             sys.exit()
+        else:
+            over = input("Enter expected command(yes or no): ")
 
     elif trying.upper()!= guess:
-        lifes = lifes - 1
+        lifes = lifes - 2
         if lifes > 0:
             print("Unfortunately", trying, "is not my secret capital")
-            option(guess, name, lifes)
+            option(guess, name, lifes, start_time,city, info, lette_wrong)
         else:
             print("You loose.")
             sys.exit()
