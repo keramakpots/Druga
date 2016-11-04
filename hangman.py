@@ -117,10 +117,3 @@ def word(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
 
 
 main()
-
-
-
-
-
-
-main()
