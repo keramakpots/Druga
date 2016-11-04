@@ -39,13 +39,17 @@ def doing():
             data = infile.writelines(data)
             pass
     elif question == 'archive':
+        print("All completed task has been delated")
         with open('lista.txt', 'r+') as infile:
             data = infile.readlines()
-            x = '[x]'
-            for line in data:
-                if x in line:
-                    del x
-        print("All completed task has been delated")
+            for new in data:
+                if data[0] == '[ ]':
+                    infile.writelines(new)
+        with open('lista.txt', 'w') as infile:
+            data = infile.writelines(new)
+            pass
+
+
     elif question == "x":
         # exit with a letter "x"
         sys.exit()
