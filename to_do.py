@@ -43,13 +43,10 @@ def doing():
         new_list = []
         data = open("lista.txt", 'r+')
         data.read
-        print(data)
 
         for line in data:
             if "[X]" not in line:
                 new_list.append(line)
-                print(new_list)
-        print(new_list)
         data.close()
         with open('lista.txt', 'w') as infile:
             data = infile.writelines(new_list)
