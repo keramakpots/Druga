@@ -80,9 +80,9 @@ def letter(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
         option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
 
     else:
-        if lifes > 1:
+        lifes = lifes - 1
+        if lifes > 0:
             guesses = guesses + 1
-            lifes = lifes - 1
             lette_wrong.append(answer.upper())
             option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
         else:
@@ -113,7 +113,7 @@ def word(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
     elif trying.upper()!= guess:
         guesses = guesses + 1
         lifes = lifes - 2
-        if lifes > 1:
+        if lifes > 0:
             print("Unfortunately", trying, " is not my secret capital.")
             option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
         else:
