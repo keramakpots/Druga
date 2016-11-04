@@ -22,7 +22,6 @@ def main():
     for lette in info:
         b = info.index(lette)
         info[b] = "_"
-    print(guess)
     print("Try to guess a european capital")
     start_time = time.time()
     lifes = 5
@@ -37,7 +36,9 @@ def option(guess, name, lifes, start_time,city, info, lette_wrong, guesses):
     """
     for lette in info:
         print(lette," ",end="")
-    if info == city:    #if player guess city by guessing letters
+
+    if info == city:
+            #if player guess city by guessing letters
         print("Congratulation",name,"."," You've guessed the capital in",
               round((time.time() - start_time)), "seconds with ",guesses+1,
               " guesses.")
@@ -57,6 +58,7 @@ def option(guess, name, lifes, start_time,city, info, lette_wrong, guesses):
     print("Lifes: ",lifes)
     choice = input("Do you want to guess a letter or whole word? Enter letter or"
                    " word: ")
+
     if choice == 'letter':
         letter(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
     elif choice == 'word':
