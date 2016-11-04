@@ -5,7 +5,7 @@ import time
 
 def main():
     """Main function containing list of cities and main variables."""
-    name = input("Welcome in Hangman game. Whats your name?: ")
+    name = input("Welcome in Hangman game. What's your name?: ")
     capitals = ("AMSTERDAM", "ANDORRA", "ANKARA", "ATHENS", "BAKU", "BELFAST",
                 "BELGRADE", "BERLIN", "BERN", "BRATISLAVA","BRUSSELS",
                 "BUCHAREST", "BUDAPEST", "COPENHAGEN", "DUBLIN","HELSINKI",
@@ -87,11 +87,21 @@ def letter(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
             option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
         else:
             print("You loose.")
-            sys.exit()
+            over = input("Do you want to play again (yes for start over/no"
+                         " for exit) ")
+            while over != 'yes' and over != 'no':
+                over = input("Enter expected command(yes or no): ")
+            else:
+                if over.lower() == 'yes':
+                    main()
+                    pass
+                elif over.lower() == 'no':
+                    sys.exit()
+                    pass
+
 
 def word(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
     """Function that checks words given by the player."""
-    print(lifes)
     trying = input("What's the capital? ")
 
     if trying.upper() == guess:
@@ -118,7 +128,17 @@ def word(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
             option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
         else:
             print("You loose.")
-            sys.exit()
+            over = input("\nDo you want to play again (yes for start over/no"
+                         " for exit) ")
+            while over != 'yes' and over != 'no':   #input control
+                over = input("Enter expected command(yes or no): ")
+            else:
+                if over.lower() == 'yes':
+                    main()
+                    pass
+                elif over.lower() == 'no':
+                    sys.exit()
+                    pass
 
 
 main()
