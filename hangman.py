@@ -54,7 +54,7 @@ def option(guess, name, lifes, start_time,city, info, lette_wrong, guesses):
                 sys.exit()
                 pass
     else:
-        print("Wrong letters: ",lette_wrong)
+        print("Wrong letter(s): ",lette_wrong)
     print("Lifes: ",lifes)
     choice = input("Do you want to guess a letter or whole word? Enter letter or"
                    " word: ")
@@ -80,11 +80,14 @@ def letter(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
         option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
 
     else:
-        guesses = guesses + 1
-        lifes = lifes - 1
-        lette_wrong.append(answer.upper())
-        option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
-
+        if lifes > 1:
+            guesses = guesses + 1
+            lifes = lifes - 1
+            lette_wrong.append(answer.upper())
+            option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
+        else:
+            print("You loose.")
+            sys.exit()
 
 def word(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
     """Function that checks words given by the player."""
@@ -110,7 +113,7 @@ def word(guess, name, lifes, start_time,city, info, lette_wrong,guesses):
     elif trying.upper()!= guess:
         guesses = guesses + 1
         lifes = lifes - 2
-        if lifes > 0:
+        if lifes > 1:
             print("Unfortunately", trying, " is not my secret capital.")
             option(guess, name, lifes, start_time,city, info, lette_wrong,guesses)
         else:
