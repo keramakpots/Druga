@@ -53,29 +53,29 @@ def print_table(inv):
     if order == "":
         print("Inventory:")
         print("count      item name")
-        print("-----------------")
+        print("-------------------")
         for key, value in inv.items():
             print('{:>5} {:>14}'.format(value, key))
-        print("-----------------")
+        print("-------------------")
         print("Total number of items:", items)
     elif order == "count,desc":
         sorted_inv = sorted(inv.items(), key=operator.itemgetter(1))
         sorted_inv.reverse()
         print("Inventory:")
         print("count      item name")
-        print("-----------------")
+        print("-------------------")
         for key, value in sorted_inv:
             print('{:>5} {:>14}'.format(value, key))
-        print("-----------------")
+        print("-------------------")
         print("Total number of items:", items)
     elif order == "count,asc":
         sorted_inv = sorted(inv.items(), key=operator.itemgetter(1))
         print("Inventory:")
         print("count      item name")
-        print("-----------------")
+        print("-------------------")
         for key, value in sorted_inv:
             print('{:>5} {:>14}'.format(value, key))
-        print("-----------------")
+        print("-------------------")
         print("Total number of items:", items)
 
 
@@ -93,8 +93,7 @@ def export_inventory(inv):
             exported.writerow([key, value])
 
 
-inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12,
-    'tomahawknr2323232323': 1443}
+inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
 loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby',
     'shield', 'shield', 'shield', 'golden crown', 'golden crown']
 option(inv, loot)
