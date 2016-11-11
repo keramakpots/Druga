@@ -24,7 +24,7 @@ def option(inv, loot):
         option(inv, loot)
         pass
     elif option1 == 'import':
-        import_inventory(inv)
+        inv = import_inventory(inv)
         option(inv, loot)
         pass
     elif option1 == "exit":
@@ -56,7 +56,7 @@ def print_table(inv):
     items = str(sum(inv.values()))
     length = int(len(max(inv, key = len)))
     #something like that, but i have to figure out how to implement that to,
-    #wide of columns
+    #width of columns
     if order == "":
         print("Inventory:")
         print("count      item name")
@@ -91,15 +91,17 @@ def print_table(inv):
 
 def import_inventory(inv):
     """it imports inventory from a file"""
-     #not adding as in add function
-    reader = csv.reader(open('import_inventory.csv', 'r'))
-    d = {}
-    for row in reader:
-       k, v = row
-       d[k] = v
-    print(d)
-    d = collections.Counter(d)
-    print(d)
+    with open('import_inventory.csv', mode='r') as infile:
+        reader = csv.reader(infile)
+        loot2 = {row[0]:row[1] for row in reader}
+        loot2 = {k:int(v) for k,v in loot2.items()}
+        #because second row wasn't a value but string
+        loot2 = collections.Counter(loot2)
+        inv = collections.Counter(inv)
+        inv = inv+loot2
+        return inv
+
+
 
 def export_inventory(inv):
     """it send current inventory to the csv file"""
@@ -108,7 +110,7 @@ def export_inventory(inv):
         for key, value in inv.items():
             exported.writerow([key, value])
 
-
+#starting dictionaries
 inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
 loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby',
     'shield', 'shield', 'shield', 'golden crown', 'golden crown']
