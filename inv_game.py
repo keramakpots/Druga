@@ -5,6 +5,7 @@ import csv
 
 
 def main():
+    #starting dictionaries
     inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
     option(inv)
 
@@ -51,6 +52,7 @@ def add_to_inventory(inv):
     """it adding loot to current inventory"""
     loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby',
         'shield', 'shield', 'shield', 'golden crown', 'golden crown']
+        #I've added shield to check how it works with other stuff
     inv = collections.Counter(inv)
     #collections module helps to add dictionaries value
     loot = collections.Counter(loot)
@@ -117,9 +119,5 @@ def export_inventory(inv):
         for key, value in inv.items():
             exported.writerow([key, value])
 
-#starting dictionaries
-
-
-#I've added shield to check how it works with other stuff
 
 main()
