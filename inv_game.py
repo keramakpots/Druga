@@ -54,6 +54,9 @@ def print_table(inv):
     """it showing inventory as a table in three ways"""
     order = input("Select the way how your inventory should be display: ")
     items = str(sum(inv.values()))
+    length = int(len(max(inv, key = len)))
+    #something like that, but i have to figure out how to implement that to,
+    #wide of columns
     if order == "":
         print("Inventory:")
         print("count      item name")
@@ -89,16 +92,14 @@ def print_table(inv):
 def import_inventory(inv):
     """it imports inventory from a file"""
      #not adding as in add function
-    with open('import_inventory.csv') as download:
-        imported = csv.reader(download)
-        loot2 = dict(imported)
-        loot2 = loot2.items()
-        inv = collections.Counter(inv)
-        loot2 = collections.Counter(loot2)
-        #almost -
-        inv = inv+loot2
-        #import as a single item - i need multiple
-        return inv#so i have to divide imported items
+    reader = csv.reader(open('import_inventory.csv', 'r'))
+    d = {}
+    for row in reader:
+       k, v = row
+       d[k] = v
+    print(d)
+    d = collections.Counter(d)
+    print(d)
 
 def export_inventory(inv):
     """it send current inventory to the csv file"""
