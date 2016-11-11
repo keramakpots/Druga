@@ -15,6 +15,7 @@ def option(inv):
     option1 = input("Choose an option(display/add/import/export/table/exit): ")
     if option1 == 'add':
         inv = add_to_inventory(inv)
+        #to save inventory to next operations
         option(inv)
         pass
     elif option1 == 'display':
@@ -73,6 +74,7 @@ def print_table(inv):
         print("--------------------")
         for key, value in inv.items():
             print('{:>5} {:>14}'.format(value, key))
+            #right justify by > insted of <
         print("--------------------")
         print("Total number of items:", items)
     elif order == "count,desc":
