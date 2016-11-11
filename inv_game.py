@@ -4,28 +4,33 @@ import operator
 import csv
 
 
-def option(inv, loot):
+def main():
+    inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
+    option(inv)
+
+
+def option(inv):
     """starting menu about inventory"""
     option1 = input("Choose an option(display, add, import, export, table): ")
     if option1 == 'add':
-        inv = add_to_inventory(inv, loot)
-        option(inv, loot)
+        inv = add_to_inventory(inv)
+        option(inv)
         pass
     elif option1 == 'display':
         display_inventory(inv)
-        option(inv, loot)
+        option(inv)
         pass
     elif option1 == 'export':
         export_inventory(inv)
-        option(inv, loot)
+        option(inv)
         pass
     elif option1 == 'table':
         print_table(inv)
-        option(inv, loot)
+        option(inv)
         pass
     elif option1 == 'import':
         inv = import_inventory(inv)
-        option(inv, loot)
+        option(inv)
         pass
     elif option1 == "exit":
         sys.exit()
@@ -42,8 +47,10 @@ def display_inventory(inv):
     print("Total number of items:", items)
 
 
-def add_to_inventory(inv, loot):
+def add_to_inventory(inv):
     """it adding loot to current inventory"""
+    loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby',
+        'shield', 'shield', 'shield', 'golden crown', 'golden crown']
     inv = collections.Counter(inv)
     #collections module helps to add dictionaries value
     loot = collections.Counter(loot)
@@ -111,9 +118,8 @@ def export_inventory(inv):
             exported.writerow([key, value])
 
 #starting dictionaries
-inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
-loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby',
-    'shield', 'shield', 'shield', 'golden crown', 'golden crown']
+
+
 #I've added shield to check how it works with other stuff
 
-option(inv, loot)
+main()
