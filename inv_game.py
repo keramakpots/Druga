@@ -12,7 +12,7 @@ def main():
 
 def option(inv):
     """starting menu about inventory"""
-    option1 = input("Choose an option(display, add, import, export, table): ")
+    option1 = input("Choose an option(display/add/import/export/table/exit): ")
     if option1 == 'add':
         inv = add_to_inventory(inv)
         option(inv)
@@ -64,7 +64,7 @@ def print_table(inv):
     """it showing inventory as a table in three ways"""
     order = input("Select the way how your inventory should be display: ")
     items = str(sum(inv.values()))
-    length = int(len(max(inv, key=len)))
+    #length = int(len(max(inv, key=len)))
     #something like that, but i have to figure out how to implement that to,
     #width of columns
     if order == "":
