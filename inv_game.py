@@ -6,7 +6,7 @@ import csv
 
 def option(inv, loot):
     """starting menu about inventory"""
-    option1 = input("Choose an option: ")
+    option1 = input("Choose an option(display, add, import, export, table): ")
     if option1 == 'add':
         inv = add_to_inventory(inv, loot)
         option(inv, loot)
@@ -31,9 +31,11 @@ def option(inv, loot):
         sys.exit()
         pass
 
+
 def display_inventory(inv):
     """it showing  inventory in random way"""
     items = str(sum(inv.values()))
+    #to delete unnecessery ''
     print("Inventory:")
     for key, value in inv.items():
         print('{}: {}'.format(key, value))
@@ -49,12 +51,11 @@ def add_to_inventory(inv, loot):
     return inv
 
 
-
 def print_table(inv):
     """it showing inventory as a table in three ways"""
     order = input("Select the way how your inventory should be display: ")
     items = str(sum(inv.values()))
-    length = int(len(max(inv, key = len)))
+    length = int(len(max(inv, key=len)))
     #something like that, but i have to figure out how to implement that to,
     #width of columns
     if order == "":
@@ -93,14 +94,13 @@ def import_inventory(inv):
     """it imports inventory from a file"""
     with open('import_inventory.csv', mode='r') as infile:
         reader = csv.reader(infile)
-        loot2 = {row[0]:row[1] for row in reader}
-        loot2 = {k:int(v) for k,v in loot2.items()}
+        loot2 = {row[0]: row[1] for row in reader}
+        loot2 = {k: int(v) for k, v in loot2.items()}
         #because second row wasn't a value but string
         loot2 = collections.Counter(loot2)
         inv = collections.Counter(inv)
         inv = inv+loot2
         return inv
-
 
 
 def export_inventory(inv):
@@ -114,5 +114,6 @@ def export_inventory(inv):
 inv = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
 loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby',
     'shield', 'shield', 'shield', 'golden crown', 'golden crown']
-    #i've added shield to check how it works with other stuff
+#I've added shield to check how it works with other stuff
+
 option(inv, loot)
