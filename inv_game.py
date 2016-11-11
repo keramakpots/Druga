@@ -63,7 +63,9 @@ def print_table(inv):
         print("--------------------")
         print("Total number of items:", items)
     elif order == "count,desc":
+        #sorted with operator module in ascending values
         sorted_inv = sorted(inv.items(), key=operator.itemgetter(1))
+        #reversing to get descending values
         sorted_inv.reverse()
         print("Inventory:")
         print("count      item name")
@@ -73,6 +75,7 @@ def print_table(inv):
         print("--------------------")
         print("Total number of items:", items)
     elif order == "count,asc":
+        #as above
         sorted_inv = sorted(inv.items(), key=operator.itemgetter(1))
         print("Inventory:")
         print("count      item name")
