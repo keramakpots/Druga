@@ -44,7 +44,7 @@ def display_inventory(inv):
     #to delete unnecessery ''
     print("Inventory:")
     for key, value in inv.items():
-        print('{}: {}'.format(key, value))
+        print('{}: {}'.format(value, key))
     print("Total number of items:", items)
 
 
