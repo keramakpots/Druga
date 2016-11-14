@@ -129,8 +129,9 @@ def export_inventory(inv):
 
 def instructions(inv, loot):
     """it shows how to move in a dungeon game"""
-    cprint("Use WSAD to move up/down/left/right in DUNGEON GAME", 'green', 'on_red')
-    exit = input("Press <q> to go back to menu")
+    cprint("Use WSAD to move up/down/left/right in DUNGEON GAME", 'green', 'on_grey')
+    cprint("Made by Maria Steimetz, Mateusz Siga and Marek Stopka", 'green', 'on_grey')
+    exit = input("Press <q> to go back to menu: ")
     if exit == 'q':
         option(inv, loot)
     else:
