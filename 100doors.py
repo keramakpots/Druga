@@ -1,4 +1,4 @@
-doors = [False] * 100
+doors = [False] * 5
 opened=[]
 
 for i in range(0, len(doors)):

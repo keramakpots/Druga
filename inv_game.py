@@ -65,7 +65,6 @@ def add_to_inventory(inv, loot):
     inv = inv+loot
     return inv
 
-
 def print_table(inv):
     """it showing inventory as a table in three ways"""
     order = input("Select the way how your inventory should be display: ")
